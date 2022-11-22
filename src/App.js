@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import { useState } from "react";
+import "./App.css";
+import rawdata from "../src/rawdata.txt";
+import img from "./Images/image.jpg"
+ function App() {
+  const [name, setName] = useState("ANIMESH");
+  function handleSubmit() {
+    console.log("text-encoded=>. ", rawdata)
+    fetch(rawdata)
+      .then((r) => r.text())
+      .then((text) => setName(text));
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input placeholder={name} />
+      <h1>Hi world !</h1>
+      <button onClick={handleSubmit}>Submit</button>
+      <img src={img} alt={name}/>
     </div>
   );
 }
